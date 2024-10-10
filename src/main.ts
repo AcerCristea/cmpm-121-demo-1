@@ -25,21 +25,18 @@ button.addEventListener("click", () => {
   counterDisplay.innerHTML = `${counter} sloth naps`;
 });
 
+function updateCounter() {
+  const currTimeStamp = performance.now();
 
-function updateCounter(){
-    const currTimeStamp = performance.now();
+  const elapsed = currTimeStamp - latestTimeStamp;
 
-    const elapsed = currTimeStamp - latestTimeStamp;
+  counter += elapsed / 1000;
 
-    counter += elapsed/1000;
+  counterDisplay.innerHTML = `${Math.floor(counter)} sloth naps`;
 
-    counterDisplay.innerHTML = `${Math.floor(counter)} sloth naps`;
+  latestTimeStamp = currTimeStamp;
 
-    latestTimeStamp = currTimeStamp;
-
-    requestAnimationFrame(updateCounter);
-
-
+  requestAnimationFrame(updateCounter);
 }
 
 requestAnimationFrame(updateCounter); // initial call
