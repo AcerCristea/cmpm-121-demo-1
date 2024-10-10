@@ -31,28 +31,27 @@ button.addEventListener("click", () => {
 });
 
 function updateCounterDisplay() {
-    counterDisplay.innerHTML = `${Math.floor(counter)} sloth naps`;
-    purchaseButton.disabled = counter < 10;
+  counterDisplay.innerHTML = `${Math.floor(counter)} sloth naps`;
+  purchaseButton.disabled = counter < 10;
 }
 
 purchaseButton.addEventListener("click", () => {
-    counter-=10;
-    growthRate+=1;
-    updateCounterDisplay();
+  counter -= 10;
+  growthRate += 1;
+  updateCounterDisplay();
 });
 
-
 function updateCounter() {
-    const currTimeStamp = performance.now();
-    const elapsed = currTimeStamp - latestTimeStamp;
+  const currTimeStamp = performance.now();
+  const elapsed = currTimeStamp - latestTimeStamp;
 
-    counter += (elapsed / 1000) * growthRate;
+  counter += (elapsed / 1000) * growthRate;
 
-    updateCounterDisplay();
+  updateCounterDisplay();
 
-    latestTimeStamp = currTimeStamp;
-    
-    requestAnimationFrame(updateCounter);
+  latestTimeStamp = currTimeStamp;
+
+  requestAnimationFrame(updateCounter);
 }
 
 requestAnimationFrame(updateCounter); // initial call
