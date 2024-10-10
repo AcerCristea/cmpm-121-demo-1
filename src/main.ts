@@ -2,6 +2,10 @@ import "./style.css";
 
 const app: HTMLDivElement = document.querySelector("#app")!;
 
+let counter: number = 0;
+let growthRate: number = 0;
+let latestTimeStamp: number = performance.now();
+
 const gameName = "My amazing Website";
 document.title = gameName;
 
@@ -13,8 +17,10 @@ const button = document.createElement("button");
 button.innerHTML = "🦥";
 app.append(button);
 
-let counter: number = 0;
-let latestTimeStamp: number = performance.now();
+const purchaseButton = document.createElement("button");
+purchaseButton.innerHTML = "Upgrade";
+purchaseButton.disabled = true;
+app.append(purchaseButton);
 
 const counterDisplay = document.createElement("div");
 counterDisplay.innerHTML = `${counter} sloth naps`;
@@ -22,21 +28,31 @@ app.append(counterDisplay);
 
 button.addEventListener("click", () => {
   counter++;
-  counterDisplay.innerHTML = `${counter} sloth naps`;
 });
 
+function updateCounterDisplay() {
+    counterDisplay.innerHTML = `${Math.floor(counter)} sloth naps`;
+    purchaseButton.disabled = counter < 10;
+}
+
+purchaseButton.addEventListener("click", () => {
+    counter-=10;
+    growthRate+=1;
+    updateCounterDisplay();
+});
+
+
 function updateCounter() {
-  const currTimeStamp = performance.now();
+    const currTimeStamp = performance.now();
+    const elapsed = currTimeStamp - latestTimeStamp;
 
-  const elapsed = currTimeStamp - latestTimeStamp;
+    counter += (elapsed / 1000) * growthRate;
 
-  counter += elapsed / 1000;
+    updateCounterDisplay();
 
-  counterDisplay.innerHTML = `${Math.floor(counter)} sloth naps`;
-
-  latestTimeStamp = currTimeStamp;
-
-  requestAnimationFrame(updateCounter);
+    latestTimeStamp = currTimeStamp;
+    
+    requestAnimationFrame(updateCounter);
 }
 
 requestAnimationFrame(updateCounter); // initial call
