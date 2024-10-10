@@ -23,3 +23,8 @@ button.addEventListener("click", () => {
   counter++;
   counterDisplay.innerHTML = `${counter} sloth naps`;
 });
+
+setInterval(() => {
+    counter++;
+    counterDisplay.innerHTML = `${counter} sloth naps`;
+}, 1000);
