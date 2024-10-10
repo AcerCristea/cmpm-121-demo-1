@@ -14,6 +14,7 @@ button.innerHTML = "🦥";
 app.append(button);
 
 let counter: number = 0;
+let latestTimeStamp: number = performance.now();
 
 const counterDisplay = document.createElement("div");
 counterDisplay.innerHTML = `${counter} sloth naps`;
@@ -24,7 +25,21 @@ button.addEventListener("click", () => {
   counterDisplay.innerHTML = `${counter} sloth naps`;
 });
 
-setInterval(() => {
-  counter++;
-  counterDisplay.innerHTML = `${counter} sloth naps`;
-}, 1000);
+
+function updateCounter(){
+    const currTimeStamp = performance.now();
+
+    const elapsed = currTimeStamp - latestTimeStamp;
+
+    counter += elapsed/1000;
+
+    counterDisplay.innerHTML = `${Math.floor(counter)} sloth naps`;
+
+    latestTimeStamp = currTimeStamp;
+
+    requestAnimationFrame(updateCounter);
+
+
+}
+
+requestAnimationFrame(updateCounter); // initial call
