@@ -16,10 +16,10 @@ app.append(button);
 let counter: number = 0;
 
 const counterDisplay = document.createElement("div");
-counterDisplay.innerHTML = `${counter} sloth naps`; // Initial display
+counterDisplay.innerHTML = `${counter} sloth naps`;
 app.append(counterDisplay);
 
 button.addEventListener("click", () => {
-    counter++;
-    counterDisplay.innerHTML = `${counter} sloth naps`; // Update the display
+  counter++;
+  counterDisplay.innerHTML = `${counter} sloth naps`;
 });
