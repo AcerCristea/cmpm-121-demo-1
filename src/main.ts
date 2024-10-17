@@ -106,7 +106,7 @@ purchaseButtonC.addEventListener("click", () => {
     growthRate += 50.0;
     countC++;
     priceC = priceC * priceIncrease;
-    purchaseButtonC.innerHTML = `C (-${Math.round(priceC * 100) / 100}, +50 naps/sec)`;
+    purchaseButtonC.innerHTML = `C (-${Math.round(priceC * 100) / 100}, +50 naps/sec)`; // 2 decimals
     updateCounterDisplay();
     updateGrowthDisplay();
     updatePurchaseCountDisplay();
