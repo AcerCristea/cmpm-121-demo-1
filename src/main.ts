@@ -44,7 +44,7 @@ counterDisplay.innerHTML = `${counter} sloth naps`;
 app.append(counterDisplay);
 
 const growthDisplay = document.createElement("div");
-growthDisplay.innerHTML = `${(growthRate)} cookies/sec`;
+growthDisplay.innerHTML = `${growthRate} cookies/sec`;
 app.append(growthDisplay);
 
 const purchaseCountDisplay = document.createElement("div");
@@ -80,7 +80,7 @@ purchaseButtonA.addEventListener("click", () => {
     growthRate += 0.1;
     countA++;
     priceA = priceA * priceIncrease;
-    purchaseButtonA.innerHTML = `A (-${Math.round(priceA * 100)/100}, +0.1 naps/sec)`;
+    purchaseButtonA.innerHTML = `A (-${Math.round(priceA * 100) / 100}, +0.1 naps/sec)`;
     updateCounterDisplay();
     updateGrowthDisplay();
     updatePurchaseCountDisplay();
@@ -93,7 +93,7 @@ purchaseButtonB.addEventListener("click", () => {
     growthRate += 2.0;
     countB++;
     priceB = priceB * priceIncrease;
-    purchaseButtonB.innerHTML = `B (-${Math.round(priceB * 100)/100}, +2.0 naps/sec)`;
+    purchaseButtonB.innerHTML = `B (-${Math.round(priceB * 100) / 100}, +2.0 naps/sec)`;
     updateCounterDisplay();
     updateGrowthDisplay();
     updatePurchaseCountDisplay();
@@ -106,7 +106,7 @@ purchaseButtonC.addEventListener("click", () => {
     growthRate += 50.0;
     countC++;
     priceC = priceC * priceIncrease;
-    purchaseButtonC.innerHTML = `C (-${Math.round(priceC * 100)/100}, +50 naps/sec)`;
+    purchaseButtonC.innerHTML = `C (-${Math.round(priceC * 100) / 100}, +50 naps/sec)`;
     updateCounterDisplay();
     updateGrowthDisplay();
     updatePurchaseCountDisplay();
