@@ -21,9 +21,10 @@ header.innerHTML = gameName;
 app.append(header);
 
 const slothButton = document.createElement("button");
-slothButton.style.backgroundImage = "url('https://static-00.iconduck.com/assets.00/sloth-emoji-2048x1926-nnlvwog5.png')";
+slothButton.style.backgroundImage =
+  "url('https://static-00.iconduck.com/assets.00/sloth-emoji-2048x1926-nnlvwog5.png')";
 slothButton.style.backgroundSize = "cover";
-slothButton.style.width = "200px"; 
+slothButton.style.width = "200px";
 slothButton.style.height = "200px";
 slothButton.style.cursor = "pointer";
 slothButton.style.position = "relative";
@@ -37,9 +38,10 @@ buttonContainer.style.display = "inline-block"; // Use flexbox layout
 app.append(buttonContainer);
 
 const leafButton = document.createElement("button");
-leafButton.style.backgroundImage = "url('https://www.bodybelize.com/uploads/3/3/8/8/3388250/s873496901458032811_p113_i7_w791.png')";
+leafButton.style.backgroundImage =
+  "url('https://www.bodybelize.com/uploads/3/3/8/8/3388250/s873496901458032811_p113_i7_w791.png')";
 leafButton.style.backgroundSize = "cover";
-leafButton.style.width = "100px"; 
+leafButton.style.width = "100px";
 leafButton.style.height = "100px";
 leafButton.style.cursor = "pointer";
 leafButton.style.position = "relative"; // To position text inside the button
@@ -61,16 +63,16 @@ leafText.innerHTML = `(-${Math.round(priceA * 100) / 100}, +0.1 naps/sec)`;
 leafContainer.append(leafText);
 
 const bedButton = document.createElement("button");
-bedButton.style.backgroundImage = "url('https://img.freepik.com/premium-photo/cute-sloth-relaxing-hammock-made-vines_885831-89636.jpg')";
+bedButton.style.backgroundImage =
+  "url('https://img.freepik.com/premium-photo/cute-sloth-relaxing-hammock-made-vines_885831-89636.jpg')";
 bedButton.style.backgroundSize = "cover";
-bedButton.style.width = "100px"; 
+bedButton.style.width = "100px";
 bedButton.style.height = "100px";
 bedButton.style.cursor = "pointer";
 bedButton.style.position = "relative"; // To position text inside the button
 bedButton.style.borderRadius = "50%"; // Round shape
 bedButton.disabled = true;
 app.append(bedButton);
-
 
 // Create a container for the bed button and its label
 const bedContainer = document.createElement("div");
@@ -86,16 +88,16 @@ bedText.innerHTML = "(Unlock for 100 sloth naps)";
 bedContainer.append(bedText);
 
 const papayaButton = document.createElement("button");
-papayaButton.style.backgroundImage = "url('https://attic.sh/6rqkfxjafet2nfcpel0p2lib9hs2')";
+papayaButton.style.backgroundImage =
+  "url('https://attic.sh/6rqkfxjafet2nfcpel0p2lib9hs2')";
 papayaButton.style.backgroundSize = "cover";
-papayaButton.style.width = "100px"; 
+papayaButton.style.width = "100px";
 papayaButton.style.height = "100px";
 papayaButton.style.cursor = "pointer";
 papayaButton.style.position = "relative"; // To position text inside the button
 papayaButton.style.borderRadius = "50%"; // Round shape
 papayaButton.disabled = true;
 app.append(papayaButton);
-
 
 // Create a container for the papaya button and its label
 const papayaContainer = document.createElement("div");
@@ -110,7 +112,6 @@ const papayaText = document.createElement("p");
 papayaText.innerHTML = "Papaya (Unlock for 1000 sloth naps)";
 papayaContainer.append(papayaText);
 
-
 const style = document.createElement("style");
 style.innerHTML = `
   button:disabled {
@@ -119,7 +120,6 @@ style.innerHTML = `
   }
 `;
 document.head.appendChild(style);
-
 
 const counterDisplay = document.createElement("div");
 counterDisplay.innerHTML = `${counter} sloth naps`;
@@ -187,7 +187,7 @@ papayaButton.addEventListener("click", () => {
     growthRate += 50.0;
     countC++;
     priceC = priceC * priceIncrease;
-//    papayaButton.innerHTML = `C (-${Math.round(priceC * 100) / 100}, +50 naps/sec)`; // 2 decimals
+    //    papayaButton.innerHTML = `C (-${Math.round(priceC * 100) / 100}, +50 naps/sec)`; // 2 decimals
     updateCounterDisplay();
     updateGrowthDisplay();
     updatePurchaseCountDisplay();
