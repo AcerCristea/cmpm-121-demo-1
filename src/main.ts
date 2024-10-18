@@ -20,21 +20,27 @@ const header = document.createElement("h1");
 header.innerHTML = gameName;
 app.append(header);
 
+const slothContainer = document.createElement("div");
+app.append(slothContainer);
+
+/*BUTTONS*************************************************************************************************/
 const slothButton = document.createElement("button");
 slothButton.style.backgroundImage =
   "url('https://static-00.iconduck.com/assets.00/sloth-emoji-2048x1926-nnlvwog5.png')";
 slothButton.style.backgroundSize = "cover";
-slothButton.style.width = "200px";
-slothButton.style.height = "200px";
+slothButton.style.width = "160px";
+slothButton.style.height = "160px";
 slothButton.style.cursor = "pointer";
 slothButton.style.position = "relative";
 slothButton.style.borderRadius = "50%";
-slothButton.style.transform = "translateY(-150px)";
-app.append(slothButton);
+slothContainer.append(slothButton);
 
-// Create a container for the buttons to be arranged horizontally
+const counterDisplay = document.createElement("div");
+counterDisplay.innerHTML = `${counter} sloth naps`;
+slothContainer.append(counterDisplay);
+
 const buttonContainer = document.createElement("div");
-buttonContainer.style.display = "inline-block"; // Use flexbox layout
+buttonContainer.style.display = "inline-block";
 app.append(buttonContainer);
 
 const leafButton = document.createElement("button");
@@ -44,22 +50,17 @@ leafButton.style.backgroundSize = "cover";
 leafButton.style.width = "100px";
 leafButton.style.height = "100px";
 leafButton.style.cursor = "pointer";
-leafButton.style.position = "relative"; // To position text inside the button
-leafButton.style.borderRadius = "50%"; // Round shape
+leafButton.style.position = "relative";
+leafButton.style.borderRadius = "50%";
 leafButton.disabled = true;
 app.append(leafButton);
 
-// Create a container for the leaf button and its label
 const leafContainer = document.createElement("div");
-leafContainer.style.textAlign = "center"; // Center the text and button
 buttonContainer.append(leafContainer);
-
-// Add the leaf button inside the container
 leafContainer.append(leafButton);
 
-// Add text underneath the leaf button
 const leafText = document.createElement("p");
-leafText.innerHTML = `(-${Math.round(priceA * 100) / 100}, +0.1 naps/sec)`;
+leafText.innerHTML = `Cecropia Leaf (-${Math.round(priceA * 100) / 100}, +0.1 naps/sec)`;
 leafContainer.append(leafText);
 
 const bedButton = document.createElement("button");
@@ -69,22 +70,18 @@ bedButton.style.backgroundSize = "cover";
 bedButton.style.width = "100px";
 bedButton.style.height = "100px";
 bedButton.style.cursor = "pointer";
-bedButton.style.position = "relative"; // To position text inside the button
-bedButton.style.borderRadius = "50%"; // Round shape
+bedButton.style.position = "relative";
+bedButton.style.borderRadius = "50%";
 bedButton.disabled = true;
 app.append(bedButton);
 
-// Create a container for the bed button and its label
 const bedContainer = document.createElement("div");
-bedContainer.style.textAlign = "center"; // Center the text and button
+bedContainer.style.textAlign = "center";
 buttonContainer.append(bedContainer);
-
-// Add the bed button inside the container
 bedContainer.append(bedButton);
 
-// Add text underneath the bed button
 const bedText = document.createElement("p");
-bedText.innerHTML = "(Unlock for 100 sloth naps)";
+bedText.innerHTML = `Hammock (-${Math.round(priceB * 100) / 100}, +2 naps/sec)`;
 bedContainer.append(bedText);
 
 const papayaButton = document.createElement("button");
@@ -94,22 +91,18 @@ papayaButton.style.backgroundSize = "cover";
 papayaButton.style.width = "100px";
 papayaButton.style.height = "100px";
 papayaButton.style.cursor = "pointer";
-papayaButton.style.position = "relative"; // To position text inside the button
-papayaButton.style.borderRadius = "50%"; // Round shape
+papayaButton.style.position = "relative";
+papayaButton.style.borderRadius = "50%";
 papayaButton.disabled = true;
 app.append(papayaButton);
 
-// Create a container for the papaya button and its label
 const papayaContainer = document.createElement("div");
-papayaContainer.style.textAlign = "center"; // Center the text and button
+papayaContainer.style.textAlign = "center";
 buttonContainer.append(papayaContainer);
-
-// Add the papaya button inside the container
 papayaContainer.append(papayaButton);
 
-// Add text underneath the papaya button
 const papayaText = document.createElement("p");
-papayaText.innerHTML = "Papaya (Unlock for 1000 sloth naps)";
+papayaText.innerHTML = `Papaya (-${Math.round(priceC * 100) / 100}, +50 naps/sec)`;
 papayaContainer.append(papayaText);
 
 const style = document.createElement("style");
@@ -121,16 +114,14 @@ style.innerHTML = `
 `;
 document.head.appendChild(style);
 
-const counterDisplay = document.createElement("div");
-counterDisplay.innerHTML = `${counter} sloth naps`;
-app.append(counterDisplay);
+/*BUTTONS************************************************************************************************/
 
 const growthDisplay = document.createElement("div");
-growthDisplay.innerHTML = `${growthRate} cookies/sec`;
+growthDisplay.innerHTML = `${growthRate} naps/sec`;
 app.append(growthDisplay);
 
 const purchaseCountDisplay = document.createElement("div");
-purchaseCountDisplay.innerHTML = `A: ${countA} | B: ${countB} | C: ${countC}`;
+purchaseCountDisplay.innerHTML = `Cecropia Leafs: ${countA} | Hammocks: ${countB} | Papayas: ${countC}`;
 app.append(purchaseCountDisplay);
 
 slothButton.addEventListener("click", () => {
@@ -149,11 +140,11 @@ function checkUpgradeAvailability() {
 }
 
 function updateGrowthDisplay() {
-  growthDisplay.innerHTML = `${Math.round(growthRate * 10) / 10} cookies/sec`;
+  growthDisplay.innerHTML = `${Math.round(growthRate * 10) / 10} naps/sec`;
 }
 
 function updatePurchaseCountDisplay() {
-  purchaseCountDisplay.innerHTML = `A: ${countA} | B: ${countB} | C: ${countC}`;
+  purchaseCountDisplay.innerHTML = `Cecropia Leafs: ${countA} | Hammocks: ${countB} | Papayas: ${countC}`;
 }
 
 leafButton.addEventListener("click", () => {
@@ -162,7 +153,7 @@ leafButton.addEventListener("click", () => {
     growthRate += 0.1;
     countA++;
     priceA = priceA * priceIncrease;
-    leafText.innerHTML = `(-${Math.round(priceA * 100) / 100}, +0.1 naps/sec)`;
+    leafText.innerHTML = `Cecropia Leaf (-${Math.round(priceA * 100) / 100}, +0.1 naps/sec)`;
     updateCounterDisplay();
     updateGrowthDisplay();
     updatePurchaseCountDisplay();
@@ -175,6 +166,7 @@ bedButton.addEventListener("click", () => {
     growthRate += 2.0;
     countB++;
     priceB = priceB * priceIncrease;
+    bedText.innerHTML = `Hammock (-${Math.round(priceB * 100) / 100}, +2 naps/sec)`;
     updateCounterDisplay();
     updateGrowthDisplay();
     updatePurchaseCountDisplay();
@@ -187,7 +179,7 @@ papayaButton.addEventListener("click", () => {
     growthRate += 50.0;
     countC++;
     priceC = priceC * priceIncrease;
-    //    papayaButton.innerHTML = `C (-${Math.round(priceC * 100) / 100}, +50 naps/sec)`; // 2 decimals
+    papayaButton.innerHTML = `Papaya (-${Math.round(priceC * 100) / 100}, +50 naps/sec)`; // 2 decimals
     updateCounterDisplay();
     updateGrowthDisplay();
     updatePurchaseCountDisplay();
