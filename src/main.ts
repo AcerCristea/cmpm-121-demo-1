@@ -15,9 +15,26 @@ interface Item {
 }
 
 const availableItems: Item[] = [
-  { name: "Cecropia Leafs", cost: 10, rate: 0.1, imageUrl: 'https://www.bodybelize.com/uploads/3/3/8/8/3388250/s873496901458032811_p113_i7_w791.png' },
-  { name: "Hammocks", cost: 100, rate: 2.0, imageUrl: 'https://img.freepik.com/premium-photo/cute-sloth-relaxing-hammock-made-vines_885831-89636.jpg' },
-  { name: "Papayas", cost: 1000, rate: 50.0, imageUrl: 'https://attic.sh/6rqkfxjafet2nfcpel0p2lib9hs2' },
+  {
+    name: "Cecropia Leafs",
+    cost: 10,
+    rate: 0.1,
+    imageUrl:
+      "https://www.bodybelize.com/uploads/3/3/8/8/3388250/s873496901458032811_p113_i7_w791.png",
+  },
+  {
+    name: "Hammocks",
+    cost: 100,
+    rate: 2.0,
+    imageUrl:
+      "https://img.freepik.com/premium-photo/cute-sloth-relaxing-hammock-made-vines_885831-89636.jpg",
+  },
+  {
+    name: "Papayas",
+    cost: 1000,
+    rate: 50.0,
+    imageUrl: "https://attic.sh/6rqkfxjafet2nfcpel0p2lib9hs2",
+  },
 ];
 
 const gameName = "Nap with Sloth";
@@ -31,7 +48,8 @@ const slothContainer = document.createElement("div");
 app.append(slothContainer);
 
 const slothButton = document.createElement("button");
-slothButton.style.backgroundImage = "url('https://static-00.iconduck.com/assets.00/sloth-emoji-2048x1926-nnlvwog5.png')";
+slothButton.style.backgroundImage =
+  "url('https://static-00.iconduck.com/assets.00/sloth-emoji-2048x1926-nnlvwog5.png')";
 slothButton.style.backgroundSize = "cover";
 slothButton.style.width = "160px";
 slothButton.style.height = "160px";
@@ -95,7 +113,9 @@ growthDisplay.innerHTML = `${growthRate} naps/sec`;
 app.append(growthDisplay);
 
 const purchaseCountDisplay = document.createElement("div");
-purchaseCountDisplay.innerHTML = availableItems.map((item, index) => `${item.name}: ${purchaseCounts[index]}`).join(" | ");
+purchaseCountDisplay.innerHTML = availableItems
+  .map((item, index) => `${item.name}: ${purchaseCounts[index]}`)
+  .join(" | ");
 app.append(purchaseCountDisplay);
 
 slothButton.addEventListener("click", () => {
@@ -109,7 +129,8 @@ function updateCounterDisplay() {
 
 function checkUpgradeAvailability() {
   availableItems.forEach((item, index) => {
-    buttonContainer.children[index].querySelector("button")!.disabled = counter < item.cost;
+    buttonContainer.children[index].querySelector("button")!.disabled =
+      counter < item.cost;
   });
 }
 
@@ -118,7 +139,9 @@ function updateGrowthDisplay() {
 }
 
 function updatePurchaseCountDisplay() {
-  purchaseCountDisplay.innerHTML = availableItems.map((item, index) => `${item.name}: ${purchaseCounts[index]}`).join(" | ");
+  purchaseCountDisplay.innerHTML = availableItems
+    .map((item, index) => `${item.name}: ${purchaseCounts[index]}`)
+    .join(" | ");
 }
 
 function updateCounter() {
