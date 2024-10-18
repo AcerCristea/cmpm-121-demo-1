@@ -75,7 +75,7 @@ style.innerHTML = `
 `;
 document.head.appendChild(style);
 
-availableItems.forEach((item, index) => {
+availableItems.forEach((item, index) => { // For loop to create buttons
   const itemContainer = document.createElement("div");
   const itemButton = document.createElement("button");
   itemButton.style.backgroundImage = `url('${item.imageUrl}')`;
@@ -88,7 +88,7 @@ availableItems.forEach((item, index) => {
   itemButton.disabled = true;
   itemContainer.append(itemButton);
 
-  const itemText = document.createElement("p");
+  const itemText = document.createElement("p"); // Text for each button
   itemText.innerHTML = `${item.name} (-${Math.round(item.cost * 100) / 100}, +${item.rate} naps/sec)`;
   itemContainer.append(itemText);
 
@@ -113,9 +113,14 @@ growthDisplay.innerHTML = `${growthRate} naps/sec`;
 app.append(growthDisplay);
 
 const purchaseCountDisplay = document.createElement("div");
-purchaseCountDisplay.innerHTML = availableItems
-  .map((item, index) => `${item.name}: ${purchaseCounts[index]}`)
-  .join(" | ");
+let purchaseCountsText = "";
+
+for (let i = 0; i < availableItems.length; i++) {
+  if (i > 0) purchaseCountsText += " | ";
+  purchaseCountsText += `${availableItems[i].name}: ${purchaseCounts[i]}`;
+}
+
+purchaseCountDisplay.innerHTML = purchaseCountsText;
 app.append(purchaseCountDisplay);
 
 slothButton.addEventListener("click", () => {
@@ -139,9 +144,12 @@ function updateGrowthDisplay() {
 }
 
 function updatePurchaseCountDisplay() {
-  purchaseCountDisplay.innerHTML = availableItems
-    .map((item, index) => `${item.name}: ${purchaseCounts[index]}`)
-    .join(" | ");
+  let purchaseCountsText = "";
+  for (let i = 0; i < availableItems.length; i++) {
+    if (i > 0) purchaseCountsText += " | ";
+    purchaseCountsText += `${availableItems[i].name}: ${purchaseCounts[i]}`;
+  }
+  purchaseCountDisplay.innerHTML = purchaseCountsText;
 }
 
 function updateCounter() {
