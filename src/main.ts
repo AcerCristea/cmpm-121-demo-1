@@ -75,7 +75,8 @@ style.innerHTML = `
 `;
 document.head.appendChild(style);
 
-availableItems.forEach((item, index) => { // For loop to create buttons
+availableItems.forEach((item, index) => {
+  // For loop to create buttons
   const itemContainer = document.createElement("div");
   const itemButton = document.createElement("button");
   itemButton.style.backgroundImage = `url('${item.imageUrl}')`;
