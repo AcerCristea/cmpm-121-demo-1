@@ -20,14 +20,16 @@ const availableItems: Item[] = [
     name: "Cecropia Leafs",
     cost: 10,
     rate: 0.1,
-    imageUrl: "https://www.bodybelize.com/uploads/3/3/8/8/3388250/s873496901458032811_p113_i7_w791.png",
+    imageUrl:
+      "https://www.bodybelize.com/uploads/3/3/8/8/3388250/s873496901458032811_p113_i7_w791.png",
     description: "Perfect for lazy snacking, grants you 0.1 naps/sec",
   },
   {
     name: "Hammocks",
     cost: 100,
     rate: 2.0,
-    imageUrl: "https://img.freepik.com/premium-photo/cute-sloth-relaxing-hammock-made-vines_885831-89636.jpg",
+    imageUrl:
+      "https://img.freepik.com/premium-photo/cute-sloth-relaxing-hammock-made-vines_885831-89636.jpg",
     description: "A cozy hammock to sway gently, grants you 2 naps/sec",
   },
   {
@@ -42,15 +44,18 @@ const availableItems: Item[] = [
     cost: 5000,
     rate: 200.0,
     imageUrl: "https://www.royers.com/images/1546.png",
-    description: "Cuddly plushies that make napping even more delightful, grants you 200 naps/sec",
+    description:
+      "Cuddly plushies that make napping even more delightful, grants you 200 naps/sec",
   },
   {
     name: "Sleepy Tea",
     cost: 20000,
     rate: 800.0,
-    imageUrl: "https://cdni.iconscout.com/illustration/premium/thumb/sloth-on-coffee-cup-11385380-9178594.png?f=webp",
-    description: "A warm cup of tea to drift into dreamland, grants you 800 naps/sec",
-  }
+    imageUrl:
+      "https://cdni.iconscout.com/illustration/premium/thumb/sloth-on-coffee-cup-11385380-9178594.png?f=webp",
+    description:
+      "A warm cup of tea to drift into dreamland, grants you 800 naps/sec",
+  },
 ];
 
 const gameName = "Nap with Sloth";
@@ -64,7 +69,8 @@ const slothContainer = document.createElement("div");
 app.append(slothContainer);
 
 const slothButton = document.createElement("button");
-slothButton.style.backgroundImage = "url('https://static-00.iconduck.com/assets.00/sloth-emoji-2048x1926-nnlvwog5.png')";
+slothButton.style.backgroundImage =
+  "url('https://static-00.iconduck.com/assets.00/sloth-emoji-2048x1926-nnlvwog5.png')";
 slothButton.style.backgroundSize = "cover";
 slothButton.style.width = "160px";
 slothButton.style.height = "160px";
@@ -152,7 +158,8 @@ function updateCounterDisplay() {
 
 function checkUpgradeAvailability() {
   availableItems.forEach((item, index) => {
-    buttonContainer.children[index].querySelector("button")!.disabled = counter < item.cost;
+    buttonContainer.children[index].querySelector("button")!.disabled =
+      counter < item.cost;
   });
 }
 
