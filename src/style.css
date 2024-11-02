@@ -74,3 +74,27 @@ button:focus-visible {
     background-color: #f9f9f9;
   }
 }
+
+.sloth-button {
+  background-image: url('https://static-00.iconduck.com/assets.00/sloth-emoji-2048x1926-nnlvwog5.png');
+  background-size: cover;
+  width: 160px;
+  height: 160px;
+  cursor: pointer;
+  position: relative;
+  border-radius: 50%;
+}
+
+.item-button {
+  background-size: cover;
+  width: 100px;
+  height: 100px;
+  cursor: pointer;
+  position: relative;
+  border-radius: 50%;
+}
+
+button:disabled {
+  opacity: 0.5;
+  filter: grayscale(100%);
+}

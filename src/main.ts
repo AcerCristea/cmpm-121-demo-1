@@ -1,9 +1,10 @@
 import "./style.css";
 
 const app: HTMLDivElement = document.querySelector("#app")!;
+const PRICE_INCREASE_FACTOR: number = 1.15;
+const MILLISECONDS_TO_SECONDS: number = 1000;
 let counter: number = 0;
 let growthRate: number = 0;
-const priceIncrease: number = 1.15;
 let latestTimeStamp: number = performance.now();
 const purchaseCounts: number[] = [0, 0, 0, 0, 0];
 
@@ -69,14 +70,7 @@ const slothContainer = document.createElement("div");
 app.append(slothContainer);
 
 const slothButton = document.createElement("button");
-slothButton.style.backgroundImage =
-  "url('https://static-00.iconduck.com/assets.00/sloth-emoji-2048x1926-nnlvwog5.png')";
-slothButton.style.backgroundSize = "cover";
-slothButton.style.width = "160px";
-slothButton.style.height = "160px";
-slothButton.style.cursor = "pointer";
-slothButton.style.position = "relative";
-slothButton.style.borderRadius = "50%";
+slothButton.classList.add('sloth-button');
 slothContainer.append(slothButton);
 
 const counterDisplay = document.createElement("div");
@@ -87,25 +81,11 @@ const buttonContainer = document.createElement("div");
 buttonContainer.style.display = "inline-block";
 app.append(buttonContainer);
 
-const style = document.createElement("style"); // Couldn't get hover description to work
-style.innerHTML = `
-  button:disabled {
-    opacity: 0.5;
-    filter: grayscale(100%);
-  }
-`;
-document.head.appendChild(style);
-
 availableItems.forEach((item, index) => {
   const itemContainer = document.createElement("div");
   const itemButton = document.createElement("button");
   itemButton.style.backgroundImage = `url('${item.imageUrl}')`;
-  itemButton.style.backgroundSize = "cover";
-  itemButton.style.width = "100px";
-  itemButton.style.height = "100px";
-  itemButton.style.cursor = "pointer";
-  itemButton.style.position = "relative";
-  itemButton.style.borderRadius = "50%";
+  itemButton.classList.add('item-button');
   itemButton.disabled = true;
   itemContainer.append(itemButton);
 
@@ -125,7 +105,7 @@ availableItems.forEach((item, index) => {
       counter -= item.cost;
       growthRate += item.rate;
       purchaseCounts[index]++;
-      item.cost *= priceIncrease;
+      item.cost *= PRICE_INCREASE_FACTOR;
       itemText.innerHTML = `${item.name} (-${Math.round(item.cost * 100) / 100}, +${item.rate} naps/sec)`;
       updateCounterDisplay();
       updateGrowthDisplay();
@@ -139,11 +119,19 @@ growthDisplay.innerHTML = `${growthRate} naps/sec`;
 app.append(growthDisplay);
 
 const purchaseCountDisplay = document.createElement("div");
-let purchaseCountsText = "";
-for (let i = 0; i < availableItems.length; i++) {
-  if (i > 0) purchaseCountsText += " | ";
-  purchaseCountsText += `${availableItems[i].name}: ${purchaseCounts[i]}`;
+const purchaseCountsText = "";
+
+function generatePurchaseCountsText(): string {
+  let text = "";
+  for (let i = 0; i < availableItems.length; i++) {
+    if (i > 0) text += " | ";
+    text += `${availableItems[i].name}: ${purchaseCounts[i]}`;
+  }
+  return text;
 }
+
+purchaseCountDisplay.innerHTML = generatePurchaseCountsText();
+
 purchaseCountDisplay.innerHTML = purchaseCountsText;
 app.append(purchaseCountDisplay);
 
@@ -168,18 +156,13 @@ function updateGrowthDisplay() {
 }
 
 function updatePurchaseCountDisplay() {
-  let purchaseCountsText = "";
-  for (let i = 0; i < availableItems.length; i++) {
-    if (i > 0) purchaseCountsText += " | ";
-    purchaseCountsText += `${availableItems[i].name}: ${purchaseCounts[i]}`;
-  }
-  purchaseCountDisplay.innerHTML = purchaseCountsText;
+  purchaseCountDisplay.innerHTML = generatePurchaseCountsText();
 }
 
 function updateCounter() {
   const currTimeStamp = performance.now();
   const elapsed = currTimeStamp - latestTimeStamp;
-  counter += (elapsed / 1000) * growthRate;
+  counter += (elapsed / MILLISECONDS_TO_SECONDS) * growthRate;
   updateCounterDisplay();
   updateGrowthDisplay();
   checkUpgradeAvailability();
