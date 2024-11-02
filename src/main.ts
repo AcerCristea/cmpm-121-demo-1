@@ -70,7 +70,7 @@ const slothContainer = document.createElement("div");
 app.append(slothContainer);
 
 const slothButton = document.createElement("button");
-slothButton.classList.add('sloth-button');
+slothButton.classList.add("sloth-button");
 slothContainer.append(slothButton);
 
 const counterDisplay = document.createElement("div");
@@ -85,7 +85,7 @@ availableItems.forEach((item, index) => {
   const itemContainer = document.createElement("div");
   const itemButton = document.createElement("button");
   itemButton.style.backgroundImage = `url('${item.imageUrl}')`;
-  itemButton.classList.add('item-button');
+  itemButton.classList.add("item-button");
   itemButton.disabled = true;
   itemContainer.append(itemButton);
 
