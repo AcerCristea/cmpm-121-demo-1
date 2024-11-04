@@ -60,26 +60,48 @@ const availableItems: Item[] = [
 ];
 
 const gameName = "Nap with Sloth";
+
+const gamePremise = `
+    Help your sloth take naps to prepare for the upcoming winter!
+    You must help your sloth friend achieve maximum relaxation.
+    Acquire items to increase your nap rate and become the ultimate sloth hero!
+`;
+
 document.title = gameName;
+
+const introSection = document.createElement("div");
+introSection.id = "intro";
+introSection.innerHTML = `
+  <h1>${gameName}</h1>
+  <p>${gamePremise}</p>
+  <button id="startButton">Start Game</button>
+`;
+app.append(introSection);
+
+// (initially hidden)
+const gameSection = document.createElement("div");
+gameSection.id = "game";
+gameSection.style.display = "none";
+app.append(gameSection);
 
 const header = document.createElement("h1");
 header.innerHTML = gameName;
-app.append(header);
+gameSection.append(header);
 
 const slothContainer = document.createElement("div");
-app.append(slothContainer);
+gameSection.append(slothContainer);
 
 const slothButton = document.createElement("button");
 slothButton.classList.add("sloth-button");
 slothContainer.append(slothButton);
 
 const counterDisplay = document.createElement("div");
-counterDisplay.innerHTML = `${counter} sloth naps`;
+counterDisplay.innerHTML = `${counter} sloth naps 💤`;
 slothContainer.append(counterDisplay);
 
 const buttonContainer = document.createElement("div");
 buttonContainer.style.display = "inline-block";
-app.append(buttonContainer);
+gameSection.append(buttonContainer);
 
 availableItems.forEach((item, index) => {
   const itemContainer = document.createElement("div");
@@ -116,7 +138,7 @@ availableItems.forEach((item, index) => {
 
 const growthDisplay = document.createElement("div");
 growthDisplay.innerHTML = `${growthRate} naps/sec`;
-app.append(growthDisplay);
+gameSection.append(growthDisplay);
 
 const purchaseCountDisplay = document.createElement("div");
 const purchaseCountsText = "";
@@ -133,7 +155,12 @@ function generatePurchaseCountsText(): string {
 purchaseCountDisplay.innerHTML = generatePurchaseCountsText();
 
 purchaseCountDisplay.innerHTML = purchaseCountsText;
-app.append(purchaseCountDisplay);
+gameSection.append(purchaseCountDisplay);
+
+document.getElementById("startButton")!.addEventListener("click", () => {
+  introSection.style.display = "none";
+  gameSection.style.display = "block";
+});
 
 slothButton.addEventListener("click", () => {
   counter++;
@@ -141,7 +168,7 @@ slothButton.addEventListener("click", () => {
 });
 
 function updateCounterDisplay() {
-  counterDisplay.innerHTML = `${Math.floor(counter)} sloth naps`;
+  counterDisplay.innerHTML = `${Math.floor(counter)} sloth naps 💤 `;
 }
 
 function checkUpgradeAvailability() {
